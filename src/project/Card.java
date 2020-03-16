@@ -11,16 +11,12 @@ package project;
  * should remember to add themselves as a modifier.
  * @author megha, 2020
  */
-public abstract class Card 
-{
+public enum Card {
+    ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING;
+}
     //default modifier for child classes
     
     /**
      * Students should implement this method for their specific children classes 
      * @return a String representation of a card. Could be an UNO card, a regular playing card etc.
      */
-    
-    @Override
-    public abstract String toString();
-    
-}
