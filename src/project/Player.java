@@ -1,48 +1,76 @@
 /**
- * SYST 17796 Project Base code.
- * Students can modify and extend to implement their game.
- * Add your name as a modifier and the date!
+ * SYST 17796 Project
+ * Go Fish card game
+ * Group 2
+ *
+ * @Author Zhaoxu Han 2020.03.16
  */
 package project;
 
+import java.util.ArrayList;
+
 /**
- * A class that models each Player in the game. Players have an identifier, which should be unique.
- * @author megha,2020
+ * Player class
  */
-public abstract class Player 
-{
+public abstract class Player {
+
     private String playerID; //the unique ID for this player
-    
+    //build ArrayList to store cards in hand
+    private ArrayList<Card> hand = new ArrayList<Card>();
+    private int numCards;
+
     /**
      * A constructor that allows you to set the player's unique ID
+     *
      * @param name the unique ID to assign to this player.
      */
-    public Player(String name)
-    {
-        playerID= name;
-    }
-    
-    /**
-     * @return the playerID
-     */
-    public String getPlayerID() 
-    {
-        return playerID;
+    public Player(String name) {
+        playerID = name;
+        for (int i = 0; i <= 7; i++) {
+            fish();
+        }
     }
 
     /**
-     * Ensure that the playerID is unique
-     * @param givenID the playerID to set
+     * @return the playerID
      */
-    public void setPlayerID(String givenID) 
-    {
-        playerID = givenID;
+    public String getPlayerID() {
+        return playerID;
     }
     
     /**
-     * The method to be instantiated when you subclass the Player class
-     * with your specific type of Player and filled in with logic to play your game.
+     * Ensure that the playerID is unique
+     *
+     * @param givenID the playerID to set
+     */
+    public void setPlayerID(String givenID) {
+        playerID = givenID;
+    }
+
+    /**
+     * @return the numCards
+     */
+    public int getNumCards() {
+        return numCards;
+    }
+
+    /**
+     * The method to be instantiated when you subclass the Player class with your specific type of Player and filled in
+     * with logic to play your game.
      */
     public abstract void play();
-    
+
+    private void fish() {
+        if (GoFish.tableSize() > 0) {
+            hand.add(GoFish.take());
+        } else {
+            System.out.println("no more cards");
+        }
+    }
+    //The contains()method to check whether ArrayList hand has given card.
+
+    public boolean isGiven(Card card) {
+        return hand.contains(card);
+    }
 }
+
